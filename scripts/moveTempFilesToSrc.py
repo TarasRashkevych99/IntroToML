@@ -12,7 +12,7 @@ if os.path.isdir("../tmp/"):
 
     for path in paths_to_files_in_tmp:
         path_segments = path.split("/")
-        file_name = path_segments[len(path_segments) - 1]
+        file_name = path_segments[-1]
         path_file_pairs.append((path, file_name))
 
     for path_file_pair in path_file_pairs:

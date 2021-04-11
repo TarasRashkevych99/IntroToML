@@ -12,7 +12,7 @@ paths_to_files_in_src = glob.glob("./*.*")
 
 for path in paths_to_files_in_src:
     path_segments = path.split("/")
-    file_name = path_segments[len(path_segments) - 1]
+    file_name = path_segments[-1]
     if file_name not in files_to_exclude:
         path_file_pairs.append((path, file_name))
 
