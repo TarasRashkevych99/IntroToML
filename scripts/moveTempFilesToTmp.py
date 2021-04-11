@@ -1,12 +1,14 @@
 import glob
 import os
 
+# All the paths are relative to the root latex file directory
+
 PATH = 0
 FILE_NAME = 1
 
 path_file_pairs = []
 files_to_exclude = ["notes.pdf", "notes.tex"]
-paths_to_files_in_src = glob.glob("../src/*.*")
+paths_to_files_in_src = glob.glob("./*.*")
 
 for path in paths_to_files_in_src:
     path_segments = path.split("/")

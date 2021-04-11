@@ -1,6 +1,8 @@
 import glob
 import os
 
+# All the paths are relative to the root latex file directory
+
 PATH = 0
 FILE_NAME = 1
 
