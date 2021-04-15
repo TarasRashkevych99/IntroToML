@@ -2,25 +2,35 @@
 \usepackage[utf8]{inputenc}
 \usepackage[margin=1in,footskip=0.25in]{geometry}
 \usepackage{comment}
+\usepackage{graphicx}
+\usepackage[font=itshape]{quoting}
+\usepackage{xcolor}
+\usepackage{subcaption}
 
-\title{Intoduction to Machine Learning}
+\usepackage{hyperref}  % usually it has to be the last package to be imported
+
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=black,
+}
+
+\newtheorem{example}{Example}[section]
+
+\graphicspath{ {./img/} }
+
+\title{Introduction to Machine Learning}
 \author{Taras Rashkevych}
 \date{\today}
 
+\renewcommand*\contentsname{Summary}
+
+
 \begin{document}
-
-\begin{titlepage}
-\maketitle
-\end{titlepage}
-
-\begin{abstract}
-My personal notes on the contents of the 
-Introduction to Machine Learning course held
-by professor Elisa Ricci at the University of Trento.
-These notes should provide a complete introduction
-to the world of Machine Learning and also be the basis
-for further courses on more deep topics in this area.
-\end{abstract}
-
-
+\input{TitlePage/title_page}
+\input{TableOfContents/table_of_contents}
+\input{Abstract/abstract}
+\input{Introduction/introduction}
 \end{document}
