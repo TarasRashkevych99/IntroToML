@@ -7,7 +7,7 @@ PATH = 0
 FILE_NAME = 1
 
 path_file_pairs = []
-files_to_exclude = ["notes.pdf", "notes.tex"]
+files_to_exclude = ["notes.pdf", "notes.tex", "notes.synctex.gz"]
 paths_to_files_in_src = glob.glob("./*.*")
 
 for path in paths_to_files_in_src:
