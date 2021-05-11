@@ -151,7 +151,7 @@ labels that have been learned from the training set. All this process
 can be observed in the images below:
 
 \newpage
-% FIXME: resize the images below by using GIMP 
+% FIXME: resize the images below 
 
 \begin{figure}[h]
       \centering
@@ -271,3 +271,77 @@ tasks that use the supervised learning structure defined above:
 \newpage
 
 \subsubsection{Unsupervised Learning}
+The second big family of machine learning methods is the so-called
+\emph{Unsupervised Learning}. As with supervised learning,
+all methods associated with this family have access to the data
+\emph{but} there are \emph{no} annotations associated with these data.
+Therefore, the training set in these cases consists only of a set
+of \emph{examples}(always in the form of \emph{feature vectors})
+without any associated labels. Then this set of examples is processed
+by the learning algorithm to build a model consisting of a
+\emph{hidden structure} behind the input data.
+
+At this point, it is possible to introduce some major machine learning
+tasks that use the unsupervised learning structure:
+
+\begin{itemize}
+      \item \emph{\textbf{Clustering}}: Given a training set
+            $\mathcal{T}=\{x_1,...,x_m\}$ where m is the total number
+            of examples, the task is to output a hidden structure
+            behind the input data. In this particular case the
+            discovered structure is represented by the so-called
+            \emph{clusters}, which are perfectly illustrated in the
+            following image:
+
+            \vspace{5mm}
+
+            \begin{figure}[h]
+                  \centering
+                  \includegraphics[width=0.8\textwidth]{../img/Clustering_example}
+                  \caption{Example of Clustering}
+            \end{figure}
+
+            \vspace{5mm}
+
+            This clustering framework of unsupervised learning is of
+            course extremely general and can be instantiated for
+            several problems, such as Social Network Analysis, Genomics,
+            Image Segmentation and many others.
+
+      \item \emph{\textbf{Anomaly Detection}}: This is another
+            unsupervised learning task in which the training set consists
+            of events or objects and the task consists in detecting those
+            that are unusual or atypical.
+
+            This anomaly detection framework of unsupervised learning
+            is of course extremely general and can be instantiated for
+            several problems, such as Credit Card Fraud Detection,
+            Video Surveillance and many others.
+
+            \newpage
+
+      \item \emph{\textbf{Dimensionality Reduction}}: This is another
+            unsupervised learning task in which the training set consists
+            of data characterized by a certain number of dimensions
+            (i.e.\ variables) and the task is to reduce these dimensions
+            in order to get a set of data characterized by a reduced
+            number of variables while preserving the most important
+            relationships between the data as they were in the initial
+            set. This particular task can be observed in the following
+            image:
+
+            \vspace{5mm}
+
+            \begin{figure}[h]
+                  \centering
+                  \includegraphics[width=0.5\textwidth]{../img/Dim_reduction_example}
+                  \caption{Example of Dimensionality Reduction}
+            \end{figure}
+
+            \vspace{5mm}
+
+            This dimensionality reduction framework of unsupervised
+            learning is of course extremely general and can be
+            instantiated for several problems, such as Output Inspection
+            in the case of a classification algorithm and many others.
+\end{itemize}
