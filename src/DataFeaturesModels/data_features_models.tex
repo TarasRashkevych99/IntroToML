@@ -394,3 +394,71 @@ illustrated in the following image:
 Some famous examples of the application of reinforcement learning are
 for instance the Backgammon and Go board games and the computer game
 Atari Breakout, in which you try to learn winning sequences.
+
+\subsubsection{Other Learning Variations}
+
+Besides the three largest families of machine learning methods,
+there are other families that will not be covered in these notes.
+However, it is always useful to mention \emph{some} of them because
+of their usage in different areas:
+
+\begin{itemize}
+      \item \emph{\textbf{Semi-supervised Learning}}: This is a family
+            of hybrid machine learning methods that involve small
+            datasets of labeled examples(supervised learning) and large
+            datasets of examples that don't contain any
+            labels(unsupervised learning).
+
+            \vspace{5mm}
+
+            \begin{figure}[h]
+                  \centering
+                  \includegraphics[width=0.6\textwidth]{../img/Semi_supervised_learning}
+                  \caption{Example of Semi-supervised Learning}
+            \end{figure}
+
+            \vspace{5mm}
+
+            \newpage
+
+      \item \emph{\textbf{Active Learning}}: This is a family of machine
+            learning methods that are characterized by an incremental
+            learning scheme and by some human supervision(some useful
+            feedback) which is involved only in the case of the most
+            difficult examples.
+
+            \vspace{5mm}
+
+            \begin{figure}[h]
+                  \centering
+                  \includegraphics[width=0.55\textwidth]{../img/Active_learning}
+                  \caption{Example of Active Learning}
+            \end{figure}
+
+            \vspace{5mm}
+\end{itemize}
+
+\noindent Some learning variations also derive from \emph{how} the data
+are retrieved:
+
+\begin{itemize}
+      \item \emph{\textbf{Online Learning}}: There is a continuous
+            process during which the incoming data are immediately
+            used to update the model.
+
+      \item \emph{\textbf{Offline Learning}}: The data, such as training
+            sets, are available offline and are used to train a model
+            that will then be used on new unknown data.
+\end{itemize}
+
+\noindent Other learning variations also derive from the \emph{type} of
+a model:
+
+\begin{itemize}
+      \item \emph{\textbf{Generative vs Discriminative Learning}}:
+            These two different types will be covered in the
+            particular case of supervised learning later in these notes.
+      \item \emph{\textbf{Parametric vs Non-parametric Learning}}:
+            Some models may or may not contain some parameters that
+            are learned during the training phase.
+\end{itemize}
