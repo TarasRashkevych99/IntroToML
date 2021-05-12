@@ -271,6 +271,7 @@ tasks that use the supervised learning structure defined above:
 \newpage
 
 \subsubsection{Unsupervised Learning}
+
 The second big family of machine learning methods is the so-called
 \emph{Unsupervised Learning}. As with supervised learning,
 all methods associated with this family have access to the data
@@ -334,7 +335,7 @@ tasks that use the unsupervised learning structure:
 
             \begin{figure}[h]
                   \centering
-                  \includegraphics[width=0.5\textwidth]{../img/Dim_reduction_example}
+                  \includegraphics[width=0.45\textwidth]{../img/Dim_reduction_example}
                   \caption{Example of Dimensionality Reduction}
             \end{figure}
 
@@ -347,3 +348,49 @@ tasks that use the unsupervised learning structure:
 \end{itemize}
 
 \subsubsection{Reinforcement Learning}
+
+The third big family of machine learning methods is the so-called
+\emph{Reinforcement Learning}. The big difference between this
+family and the previous two consists in the fact that there is no
+training set in reinforcement learning but there is only a numerical
+performance score as its guidance. Therefore, in this case there is a
+totally different learning scheme, which is based on the following idea:
+an \emph{agent} learns from the \emph{environment} by interacting with
+it and receiving \emph{rewards} for performing \emph{actions} that
+modify its current \emph{state}. This idea is clearly illustrated in the
+following image:
+
+\vspace{2mm}
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.5\textwidth]{../img/Reinforcement_learning}
+      \caption{Reinforcement Learning Scheme}
+\end{figure}
+
+\vspace{5mm}
+
+\newpage
+
+It immediately becomes clear that this learning scheme is highly
+\emph{interactive} because the agent, in order to learn some useful
+information, continuously completes \emph{sequences of states/examples}
+and gets \emph{rewards} after completing those sequences. In this way,
+based on the values of the rewards, the agent learns to predict the
+\emph{action} to take for any individual state/example in order to
+achieve its final goal. An example of a sequence evaluation is
+illustrated in the following image:
+
+\vspace{5mm}
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.8\textwidth]{../img/Sequence_example}
+      \caption{Example of a sequence evaluation}
+\end{figure}
+
+\vspace{5mm}
+
+Some famous examples of the application of reinforcement learning are
+for instance the Backgammon and Go board games and the computer game
+Atari Breakout, in which you try to learn winning sequences.
