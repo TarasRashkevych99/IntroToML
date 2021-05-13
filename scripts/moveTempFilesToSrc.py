@@ -11,8 +11,7 @@ if os.path.isdir("../tmp/"):
     paths_to_files_in_tmp = glob.glob("../tmp/*")
 
     for path in paths_to_files_in_tmp:
-        path_segments = path.split("/")
-        file_name = path_segments[-1]
+        _, file_name = os.path.split(path)
         path_file_pairs.append((path, file_name))
 
     for path_file_pair in path_file_pairs:
