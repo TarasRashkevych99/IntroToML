@@ -1,2 +1,4 @@
-# IntroToML
-Notes on the contents provided during the Introduction to Machine Learning course of the University of Trento
+# Introduction to Machine Learning
+
+## Description
+These are my personal notes on the content provided during the Introduction to Machine Learning course at the University of Trento.
