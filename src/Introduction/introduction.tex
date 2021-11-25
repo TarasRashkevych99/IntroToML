@@ -71,7 +71,7 @@ the conceptual model is totally different because in this case the
 programmer still gives some input data but also gives some known result
 (e.g.\ data with annotations/labels), which in combination with the
 previous ones are used to produce a program. In this way the machine
-learns from the input data and the data with annotations to be able
+learns from the input data and the data with annotations to be able to
 write a program.
 
 \newpage
@@ -324,11 +324,11 @@ pipeline:
           will also be used by the aforementioned model to process
           future data.
     \item \emph{\textbf{Testing(Inference)}}: At this stage, on the
-          other hand, a component of the future knowledge is represented
-          by the so-called \emph{testing data}, which will be passed to
-          the \emph{model}, generated during the first stage, to produce
-          some \emph{predictions}, which are the other component of the
-          future knowledge.
+          other hand, the first component of the future knowledge is
+          represented by the so-called \emph{testing data}, which will
+          be passed to the \emph{model}, generated during the first stage,
+          to produce some \emph{predictions}, which are the second component
+          of the future knowledge.
 \end{enumerate}
 
 % \vspace{5mm}
@@ -360,7 +360,7 @@ following:
 \vspace{10mm}
 
 Basically what this definition states is that machine learning is the
-study of algorithms that:
+study of algorithms that produce models that:
 
 \begin{itemize}
     \item improve their performance P
@@ -499,7 +499,7 @@ intelligence and deep learning, provided by big experts in these areas:
 \newpage
 
 The actual article about deep learning, its fundamental idea, and its
-applications written by the fathers of deep learning(they won
+applications written by the godfathers of deep learning(they won
 the 2018 Turing Award for conceptual and engineering breakthroughs that
 have made deep neural networks a critical component of computing) can be
 found at this address:
@@ -511,14 +511,14 @@ success stories that made deep learning so popular and so widely used:
 \begin{itemize}
     \item \emph{Object Recognition}: This is a general machine
           learning task that is composed of other two machine learning
-          tasks called Image Classification and Object Detection. The
-          former consists in assigning to each object present in an
+          tasks called Object Detection and Object Classification. The
+          former consists in assigning the position of that particular
+          object by indicating the so-called bounding box, which defines the
+          rectangular boundaries of where the object is located.
+          The latter consists in assigning to each object present in an
           image or in a frame of a video a label indicating the category
           to which that particular object belongs and a parameter
-          indicating the degree of accuracy. The latter consists in
-          assigning the position of that particular object by indicating
-          the so-called bounding box, which defines the rectangular
-          boundaries of where the object is located. The first actually
+          indicating the degree of accuracy. The first actually
           working deep learning system that solves this general task on
           the dataset called ImageNet was created in 2012.
           Furthermore, in 2015, the error rate of another system on the
@@ -537,11 +537,11 @@ success stories that made deep learning so popular and so widely used:
           that consists in automatically generating plausible images
           associated with the sketch of a scene passed as input. Such a
           system has been successfully developed by Nvidia.
-    \item \emph{Speech Recognition}: This a self-explanatory machine
+    \item \emph{Speech Recognition}: This is a self-explanatory machine
           learning task that has been studied for years and has been
           significantly improved in performance by using some deep
           learning techniques starting from 2009.
-    \item \emph{Neural Machine Translation}: This a machine learning
+    \item \emph{Neural Machine Translation}: This is a machine learning
           task that consists in translating sentences from one language
           to another and that has also been significantly improved in
           performance by using some deep learning approaches starting
