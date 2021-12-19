@@ -576,10 +576,10 @@ working machine learning system:
             data in order to correctly solve a given task. The importance of
             data in machine learning will always be a fundamental aspect of the
             whole process.
-      \item \emph{\textbf{Model Hypotheses}}: In general, it is always possible to
-            choose, from a large family of machine learning models, a particular
-            model structure that will be suitable for the task.
-      \item \emph{\textbf{Objective}}: It is always necessary to define an objective
+      \item \emph{\textbf{Model and Hypothesis Space}}: In general, it is always
+            possible to choose, from a large family of machine learning models,
+            a particular model structure that will be suitable for the task.
+      \item \emph{\textbf{Objective Function}}: It is always necessary to define an objective
             function that is directly related to the performance measurement of the
             chosen model.
       \item \emph{\textbf{Learning Algorithm}}: Based on the choice of a particular
@@ -685,3 +685,57 @@ story:
       \includegraphics[width=0.8\textwidth]{../img/Train_Failure}
       \caption{Why the training set design is so important}
 \end{figure}
+
+\subsubsection{Model and Hypothesis Space}
+
+At this point, once the task has been identified and the datasets have been properly built,
+it is necessary to talk about the next two key concepts that are called \textbf{Model} and
+\textbf{Hypothesis Space}. The model is basically a \emph{program} that solves the task, so
+it is the \emph{implementation} of the above-mentioned function $f \in \mathcal{F}_{task}$
+that can be tractably computed. The hypothesis space is a \emph{set of models}
+$\mathcal{H} \subset \mathcal{F}_{task}$ where a particular learning algorithm seeks a
+solution, that is, a model. So, in general, the set of models from which to choose is a
+subset of all possible models that could solve a given task, since the number of all possible
+algorithms and consequently of all possible models produced by these algorithms is
+particularly big and it should be clear that some algorithms are yet to be discovered.
+The following image perfectly describes what has just been explained:
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.23\textwidth]{../img/Model_and_hypothesis_space}
+      \caption{Model and Hypothesis Space}
+\end{figure}
+
+\newpage
+
+From the formal and practical point of view, for example in the case of
+\emph{Polynomial Curve Fitting}, the general form of a model that solves a given
+task is the following:
+
+\begin{equation*}
+      f_w(x) = \sum_{j = 0}^{M} w_jx^j
+\end{equation*}
+
+So, the learning process, in this case, consists in discovering the
+\emph{best function} $f$(at this point of reading it is not clear what this means),
+which actually means that the learning process consists in discovering the
+\emph{best parameters} $\{w_0,...,w_M\}$ of that function.
+
+The hypothesis space, on the other hand, is formally defined as follows:
+
+\begin{equation*}
+      \mathcal{H}_M = \{f_w : w \in \mathbb{R}^M\}
+\end{equation*}
+
+This means that the hypothesis space is the set of all those functions, parameterized on
+values $w_0,...,w_M$, which, for some \emph{fixed} polynomial degree $M \in \mathbb{N}$,
+solve the given task. An example of different polynomial models with different degrees
+can be observed in the image below:
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.4\textwidth]{../img/Polynomial_models}
+      \caption{Polynomial Models}
+\end{figure}
+
+\subsubsection{Objective Function}
