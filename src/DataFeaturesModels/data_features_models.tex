@@ -739,3 +739,194 @@ can be observed in the image below:
 \end{figure}
 
 \subsubsection{Objective Function}
+
+At this point, it is necessary to mathematically formalize the abstract property of
+a model of being the best choice to make among all possible models and this is
+done by introducing the concept of \textbf{Generalization Error Function} $E(f; p_{data})$
+that determines how well a solution $f \in \mathcal{F}_{task}$ fits some given data.
+So, this particular objective function basically guides the selection of
+\emph{the best ideal solution} in $\mathcal{F}_{task}$. This best ideal solution is
+formally defined as follows:
+
+\begin{equation*}
+      f^* \in \arg \min_{f \in \mathcal{F}_{task}} E(f; p_{data})
+\end{equation*}
+
+An example of the best ideal solution to a given task can be observed in the following image:
+
+\newpage
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.4\textwidth]{../img/Best_ideal_model}
+      \caption{Best Ideal Model in $\mathcal{F}_{task}$}
+\end{figure}
+
+Unfortunately, the biggest problem with this approach is the fact that \textbf{the search
+      space $\mathcal{F}_{task}$ is too large and the data generating distribution
+      $p_{data}$ is unknown}, so there is no available procedure that would allow calculating
+the best ideal model. This is the reason why, at first, it is necessary to
+restrict the search space $\mathcal{F}_{task}$ to the hypothesis space
+$\mathcal{H} \subset \mathcal{F}_{task}$ and then to calculate the best solution
+that can be implemented and evaluated in a tractable way within this restricted space,
+always be considering the same objective function $E(f; p_{data})$.
+In this way, \emph{the best feasible solution} would be formally defined as follows:
+
+\begin{equation*}
+      f_{\mathcal{H}}^* \in \arg \min_{f \in \mathcal{H}} E(f; p_{data})
+\end{equation*}
+
+An example of the best feasible solution found within the hypothesis space can be observed
+in the following image:
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.4\textwidth]{../img/Best_feasible_model}
+      \caption{Best Feasible Model in $\mathcal{H}$}
+\end{figure}
+
+Unfortunately, even in this case it is impossible to calculate the best solution,
+since \textbf{the data generating distribution $p_{data}$ is still unknown}. This
+is the reason why it is necessary to work only on a set of observations that are
+\emph{sampled} form the data generating distribution, that is, a \textbf{Training Set}
+$\mathcal{D}_n = \{z_1,...,z_n\}$, where in the case of polynomial curve fitting
+$z_i = (x_i,y_i) \in \mathcal{X} \times \mathcal{Y}$ and $z_i \sim p_{data}$.
+In this way, \emph{the best actual solution} would be formally defined as follows:
+
+\newpage
+
+\begin{equation*}
+      f_{\mathcal{H}}^*(\mathcal{D}_n) \in \arg \min_{f \in \mathcal{H}} E(f; \mathcal{D}_n)
+\end{equation*}
+
+Moreover, in this case it is no longer possible to consider the same objective
+function, but it is necessary to introduce a new objective function $E(f; \mathcal{D}_n)$,
+which is called \textbf{Training Error Function}. The important aspect here is that
+the two error functions should be as similar as possible.
+
+An example of the best actual solution found within the hypothesis space can be observed
+in the following image:
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.4\textwidth]{../img/Best_actual_model}
+      \caption{Best Actual Model in $\mathcal{H}$}
+\end{figure}
+
+At this point, it is possible to dive into the actual mathematical form that the
+generalization and training error functions have. Typically the generalization and
+training error functions can be written in terms of a \textbf{pointwise loss function}
+$l(f;z)$ measuring the error incurred by $f$ on the training example $z$. So, the two
+functions would have following forms:
+
+\begin{equation*}
+      E(f; p_{data}) = \mathbb{E}_{z \sim p_{data}}[l(f;z)]
+\end{equation*}
+
+and
+
+\begin{equation*}
+      E(f; \mathcal{D}_n) = \frac{1}{n} \sum_{i = 1}^{n} l(f;z_i)
+\end{equation*}
+
+This pointwise loss function is basically computed by comparing the prediction $f(x)$
+of the model, associated with the input $x$, and the so-called \textbf{Ground Truth}
+$z$, also associated with the input $x$. It is also important to notice that there are
+several possible implementations of this pointwise loss function, which will be
+analyzed later in these notes. For example, in the case of polynomial curve fitting,
+the implementation of the pointwise loss function $l(f;z_i) = l(f;(x_i,y_i))$ is
+$[f(x_i) - y_i]^2$, so the training error function becomes as follows:
+
+\begin{equation*}
+      E(f; \mathcal{D}_n) = \frac{1}{n} \sum_{i = 1}^{n} [f(x_i) - y_i]^2
+\end{equation*}
+
+and takes the name of \textbf{Mean Squared Error}. The meaning of this particular
+implementation can be observed in the following image:
+
+\newpage
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.7\textwidth]{../img/Mean_squared_error}
+      \caption{Mean Squared Error}
+\end{figure}
+
+So, in the case of polynomial curve fitting, the best actual model would be
+formalized as follows:
+
+\begin{equation*}
+      f_{\mathcal{H}_M}^*(\mathcal{D}_n) \in \arg \min_{f \in \mathcal{H}_M} E(f; \mathcal{D}_n)
+\end{equation*}
+
+which is actually equivalent to $f_{w^*}$ where $w^*$ is:
+
+\begin{equation*}
+      w^* \in \arg \min_{w \in \mathbb{R}^M} \frac{1}{n} \sum_{i = 1}^{n} [f_w(x_i) - y_i]^2
+\end{equation*}
+
+At this point, it is necessary to emphasize that the last equation mentioned
+above \emph{can be actually computed} and in general only requires solving
+a linear system of equations.
+
+However, there is still one issue that has to be addressed. This issue consists
+in the fact that, due to optimization difficulties encountered during the
+execution of the learning algorithm, it might happen that the computed solution
+is only a \emph{local minimum} $\hat{f}_{\mathcal{H}_M}^*(\mathcal{D}_n)$ and not a
+\emph{global minimum} $f_{\mathcal{H}_M}^*(\mathcal{D}_n)$ that has been described
+so far. This unfortunate issue can be observed in the following image:
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.65\textwidth]{../img/Best_local_actual_model}
+      \caption{Local and Global Minima}
+\end{figure}
+
+So, at this point, it could be useful to summarize the differences between
+all the different models that have been discussed so far by illustrating
+them in the following image:
+
+\newpage
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.7\textwidth]{../img/Recap_models}
+      \caption{Summary of all types of models}
+\end{figure}
+
+At this point of this already long discussion about models, it is necessary to
+talk about two other key concepts of machine learning that are \textbf{Underfitting}
+and \textbf{Overfitting}:
+
+\begin{itemize}
+      \item \emph{\textbf{Underfitting}}: The situation of underfitting is observed
+            when the value of the training error function is \emph{large}. This means
+            that there is a big discrepancy between the accuracy of the model
+            \emph{that has been computed} and the accuracy of the best model that
+            \emph{can be computed} and that minimizes the training error. In other words,
+            it is impossible to learn well enough from that particular training dataset.
+            The concept of underfitting can be summarized by the following image:
+
+            \begin{figure}[h]
+                  \centering
+                  \includegraphics[width=0.65\textwidth]{../img/Underfitting}
+                  \caption{Example of Underfitting}
+            \end{figure}
+
+      \item \emph{\textbf{Overfitting}}: The situation of overfitting is observed
+            when the computed model has learned too well from a particular
+            training set, so it performs exceptionally well on that dataset, but for
+            this very reason there is a \emph{large generalization gap},
+            which means that the model is not able to properly generalize to unknown
+            new data, which are different from those seen in the training set.
+            The concept of overfitting can be summarized by the following image:
+
+            \newpage
+
+            \begin{figure}[h]
+                  \centering
+                  \includegraphics[width=0.65\textwidth]{../img/Overfitting}
+                  \caption{Example of Overfitting}
+            \end{figure}
+
+\end{itemize}
