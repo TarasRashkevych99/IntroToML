@@ -788,9 +788,9 @@ in the following image:
 Unfortunately, even in this case it is impossible to calculate the best solution,
 since \textbf{the data generating distribution $p_{data}$ is still unknown}. This
 is the reason why it is necessary to work only on a set of observations that are
-\emph{sampled} form the data generating distribution, that is, a \textbf{Training Set}
-$\mathcal{D}_n = \{z_1,...,z_n\}$, where in the case of polynomial curve fitting
-$z_i = (x_i,y_i) \in \mathcal{X} \times \mathcal{Y}$ and $z_i \sim p_{data}$.
+\emph{sampled} from the data generating distribution, that is, a \textbf{Training Set}
+$\mathcal{D}_n = \{z_1,...,z_n\}$ with $z_i \sim p_{data}$, where in the case of
+polynomial curve fitting $z_i = (x_i,y_i) \in \mathcal{X} \times \mathcal{Y}$.
 In this way, \emph{the best actual solution} would be formally defined as follows:
 
 \newpage
@@ -830,7 +830,7 @@ and
 \end{equation*}
 
 This pointwise loss function is basically computed by comparing the prediction $f(x)$
-of the model, associated with the input $x$, and the so-called \textbf{Ground Truth}
+of the model, associated with the input $x$, and the so-called \textbf{ground truth}
 $z$, also associated with the input $x$. It is also important to notice that there are
 several possible implementations of this pointwise loss function, which will be
 analyzed later in these notes. For example, in the case of polynomial curve fitting,
@@ -904,7 +904,7 @@ and \textbf{Overfitting}:
             that there is a big discrepancy between the accuracy of the model
             \emph{that has been computed} and the accuracy of the best model that
             \emph{can be computed} and that minimizes the training error. In other words,
-            it is impossible to learn well enough from that particular training dataset.
+            it is impossible to learn well enough from that particular training set.
             The concept of underfitting can be summarized by the following image:
 
             \begin{figure}[h]
@@ -917,8 +917,8 @@ and \textbf{Overfitting}:
             when the computed model has learned too well from a particular
             training set, so it performs exceptionally well on that dataset, but for
             this very reason there is a \emph{large generalization gap},
-            which means that the model is not able to properly generalize to unknown
-            new data, which are different from those seen in the training set.
+            which means that the model is not able to properly generalize to new
+            unknown data, which are different from those seen in the training set.
             The concept of overfitting can be summarized by the following image:
 
             \newpage
@@ -930,3 +930,201 @@ and \textbf{Overfitting}:
             \end{figure}
 
 \end{itemize}
+
+Now is the time to talk about other types of errors that are always present
+and that depend on the choice of a particular training set, a particular
+hypothesis space and the inherent variability of the predictions made on
+new unknown data:
+
+\begin{itemize}
+      \item \emph{\textbf{Estimation Error}}: This is the error induced by learning
+            on a \emph{particular data sample}. Therefore, it indicates the difference
+            between the computed model and the best model in the hypothesis space that
+            minimizes the generalization error. This difference can be observed
+            in the following image:
+
+            \begin{figure}[h]
+                  \centering
+                  \includegraphics[width=0.65\textwidth]{../img/Estimation_error}
+                  \caption{Example of Estimation Error}
+            \end{figure}
+
+      \item \emph{\textbf{Approximation Error}}: This is the error induced by the
+            choice of \emph{a particular hypothesis space $\mathcal{H}$}. Therefore, it
+            indicates the difference between the best model in the chosen hypothesis
+            space that minimizes the generalization error and the best ideal model that
+            minimizes the generalization error. This difference can be observed in the
+            following image:
+
+            \newpage
+
+            \begin{figure}[h]
+                  \centering
+                  \includegraphics[width=0.65\textwidth]{../img/Approximation_error}
+                  \caption{Example of Approximation Error}
+            \end{figure}
+
+      \item \emph{\textbf{Irreducible Error}}: This is the error due to the
+            \emph{inherent data variability}. Therefore, it basically means that there
+            will \emph{always} be some error between the predictions and the ground
+            truths. This type of error can be observed in the following image:
+
+            \begin{figure}[h]
+                  \centering
+                  \includegraphics[width=0.65\textwidth]{../img/Irreducible_error}
+                  \caption{Example of Irreducible Error}
+            \end{figure}
+
+\end{itemize}
+
+At this point of reading, it is clear that the generalization error can not be computed
+because the data generating distribution $p_{data}$ is unknown. Fortunately, it is
+possible to approximately bypass this problem by using some data sampled from that
+underlying distribution, so that, during the execution of the learning algorithm,
+the training phase allows calculating the best model and the validation phase allows
+calculating the best \emph{hyperparameters} for that model. Once this sequence of
+operations has been performed, it is \textbf{assumed} that the training error
+calculated on the final model should provide an acceptable estimation of the
+generalization error. For this reason it is believed that this final model will perform
+quite well on the test set. Therefore, it is possible, for example in the case of
+polynomial curve fitting, to select the best model by considering the estimation of
+the generalization error and by taking into account the concepts of underfitting
+and overfitting, as can be observed in the following image:
+
+\newpage
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.9\textwidth]{../img/Model_selection}
+      \caption{Example of Model Selection}
+\end{figure}
+
+However, it is becoming more and more interesting to understand how to improve
+the generalization aspect of the model, and this can be done by considering
+the following techniques, which will be discussed in more detail later in these notes:
+
+\begin{itemize}
+      \item \emph{\textbf{Minimal Training Error Avoidance}}: In general, it is
+            recommended trying to avoid the minimal training error in order to avoid
+            overfitting.
+      \item \emph{\textbf{Model Capacity Reduction}}: In general, it is recommended
+            reducing the capacity of the model in order to avoid overfitting, as can
+            be observed in the image above in the case of a polynomial of degree 9.
+      \item \emph{\textbf{Regularization}}: In this case, the objective function is
+            integrated with a regularization term that allows penalizing solutions
+            that are too complex and that tend to suffer from overfitting.
+      \item \emph{\textbf{Noise Injection}}: By injecting some data noise into the
+            learning algorithm, the model starts learning new features that
+            will be useful for the future predictions.
+      \item \emph{\textbf{Convergence Avoidance}}: In some cases, but especially
+            in the case of a learning algorithm used to generate artificial neural
+            networks, it is useful to stop the learning algorithm before it reaches the
+            \emph{convergence}, which means that the final model will not learn too much
+            from the training set and will probably be able to generalize more to the
+            test set.
+\end{itemize}
+
+At this point, it is worth diving into the regularization approach mentioned above
+to understand more in detail what it means to integrate the objective function
+with a regularization term. It basically means to add to the objective function
+$E(f; \mathcal{D}_n)$ a term $\lambda_n \Omega(f)$, where $\lambda_n$ is a
+\textbf{hyperparameter} and is called \textbf{tradeoff parameter} because it
+defines a tradeoff between the original objective function and the new term
+in the sense that, by trading off both the objective function and the addictive term,
+one chooses to be more addictive to the training data or to enforce generalization
+to prevent overfitting. Therefore, the \emph{new} objective function becomes as follows:
+
+\newpage
+
+\begin{equation*}
+      E_{reg}(f; \mathcal{D}_n) = E(f; \mathcal{D}_n) + \lambda_n \Omega(f)
+\end{equation*}
+
+\vspace{2mm}
+
+and this concept can be observed even more clearly in the following image:
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.9\textwidth]{../img/Regularization}
+      \caption{Concept of Regularization}
+\end{figure}
+
+For example, in the case of polynomial curve fitting, one type of regularization
+is called \textbf{L2 Norm Regularization}, where the sum of the squares of the
+polynomial coefficients is minimized along with the original objective function,
+so that polynomials with large coefficients are penalized. Therefore the training
+error function becomes as follows:
+
+\begin{equation*}
+      E_{reg}(f_w; \mathcal{D}_n) = \frac{1}{n} \sum_{i = 1}^{n} [f_w(x_i) - y_i]^2 +
+      \frac{\lambda}{n}{\left\lVert w\right\rVert}^2 \text{,} \ \text{where} \
+      {\left\lVert w\right\rVert}^2 = \sum_{j = 1}^{M} w_j^2
+\end{equation*}
+
+\vspace{3mm}
+
+and an example of this regularization can be observed in the following image:
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.9\textwidth]{../img/Regularization_PCF}
+      \caption{Example of Regularization}
+\end{figure}
+
+where, the parameter $\lambda$ will be set by considering the performance of
+the model on the validation set. In this image it is quite clear that the
+parameter $\lambda$ somehow \emph{regulates} the tradeoff between overfitting
+and underfitting, so that, for large values of $\lambda$, the model will tend
+to underfit and, for very small values of $\lambda$, the model will tend to overfit.
+Therefore, the right value for $\lambda$ will lie somewhere in between those
+large and very small values.
+
+However, there are also other techniques that can improve the generalization
+ability of the final model and these techniques are the following:
+
+\begin{itemize}
+      \item \emph{\textbf{Increased Training Set Size}}: This basically means
+            that the more training data are available the more likely it is that
+            the final model will be able to generalize to new unknown data.
+            Unfortunately, this is not always possible.
+      \item \emph{\textbf{Data Augmentation}}: This approach suggests
+            \emph{augmenting} the training set by applying some random
+            \emph{transformations}(in the case of images these can be flips
+            and rotations) to the data already available in the training set
+            in order to produce new data that will hopefully make the final
+            model more capable of generalizing.
+      \item \emph{\textbf{Ensemble Learning}}: This approach suggests
+            combining the predictions of multiple, uncorrelated models
+            during the test phase in order to have a combined prediction
+            that will probably provided a better result.
+\end{itemize}
+
+As the last deepening of this long and complicated subsection, it is worth
+diving into the increased training set size approach where the size of the
+training set is increased to improve the generalization capability. This
+approach is quite interesting since, even if the model flexibility is
+high(as in the case of polynomial curve fitting where the polynomial degree
+is high), the training set is also very large, so the overall model is quite
+accurate. The reason why this happens is that, as the size of the available
+data increases, the training error tends to become more and more similar to
+the generalization error, such that the following relation is obtained:
+
+\begin{equation*}
+      E(f; \mathcal{D}_n) \rightarrow
+      E(f; p_{data}) \ \text{as} \ n \rightarrow \infty
+\end{equation*}
+
+\vspace{3mm}
+
+This result can be observed even more clearly in the following image:
+
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.8\textwidth]{../img/Generalization_vs_data_size}
+      \caption{Generalization vs Data Size}
+\end{figure}
+
+At this point, there should be a discussion about learning algorithms,
+however, since the number of these learning algorithms is considerably
+large, it is better to postpone this discussion to the next section.
